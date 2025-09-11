@@ -1,0 +1,11 @@
+# Rime dictionary
+# encoding: utf-8
+
+name: thattem_pinyin_en
+version: "LTS"
+sort: by_weight
+use_preset_vocabulary: false
+
+import_tables:
+  - dicts/english/cn&en
+  - dicts/english/en

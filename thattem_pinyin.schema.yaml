@@ -1,0 +1,196 @@
+# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: thattem_pinyin
+  name: 拼音
+  version: '0.0.0'
+  author:
+    - thattemperature <2719023332@qq.com>
+  description:
+    一个拼音输入法
+  dependencies:
+    - thattem_pinyin_en
+    - thattem_pinyin_jp
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 有输入法, 无输入法 ]
+  - name: ascii_punct
+    reset: 0
+    states: [ 复杂标点, 简单标点 ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - affix_segmentor@thattem_pinyin
+    - affix_segmentor@thattem_pinyin_ch
+    - affix_segmentor@thattem_pinyin_en
+    - affix_segmentor@thattem_pinyin_jp
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - script_translator
+    - table_translator@thattem_pinyin_en
+    - script_translator@thattem_pinyin_jp
+  filters:
+    - simplifier
+    - uniquifier
+
+recognizer:
+  import_preset: default
+
+key_binder:
+  import_preset: default
+
+speller:
+  alphabet: 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA;/:?'
+  initials: 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA'
+  finals: ';/:?'
+  delimiter: " '"
+  algebra:
+
+    # 万象词库适配
+
+    # 带声调韵母转化
+    # a
+    - xform/^(.*)ā(.*)$/$1a$2①/
+    - xform/^(.*)á(.*)$/$1a$2②/
+    - xform/^(.*)ǎ(.*)$/$1a$2③/
+    - xform/^(.*)à(.*)$/$1a$2④/
+    # o
+    - xform/^(.*)ō(.*)$/$1o$2①/
+    - xform/^(.*)ó(.*)$/$1o$2②/
+    - xform/^(.*)ǒ(.*)$/$1o$2③/
+    - xform/^(.*)ò(.*)$/$1o$2④/
+    # e
+    - xform/^(.*)ē(.*)$/$1e$2①/
+    - xform/^(.*)é(.*)$/$1e$2②/
+    - xform/^(.*)ě(.*)$/$1e$2③/
+    - xform/^(.*)è(.*)$/$1e$2④/
+    # i
+    - xform/^(.*)ī(.*)$/$1i$2①/
+    - xform/^(.*)í(.*)$/$1i$2②/
+    - xform/^(.*)ǐ(.*)$/$1i$2③/
+    - xform/^(.*)ì(.*)$/$1i$2④/
+    # u
+    - xform/^(.*)ū(.*)$/$1u$2①/
+    - xform/^(.*)ú(.*)$/$1u$2②/
+    - xform/^(.*)ǔ(.*)$/$1u$2③/
+    - xform/^(.*)ù(.*)$/$1u$2④/
+    # ü
+    - xform/^(.*)ǖ(.*)$/$1v$2①/
+    - xform/^(.*)ǘ(.*)$/$1v$2②/
+    - xform/^(.*)ǚ(.*)$/$1v$2③/
+    - xform/^(.*)ǜ(.*)$/$1v$2④/
+    # 特殊字符n
+    - xform/^(.*)ń(.*)$/$1n$2②/
+    - xform/^(.*)ň(.*)$/$1n$2③/
+    - xform/^(.*)ǹ(.*)$/$1n$2④/
+    # 无声调韵母ü转化
+    - xlit/ü/v/
+    # 为无声调音节标注轻声
+    - xform/^([a-zA-Z]+)$/$1⑤/
+    # 上面用特殊字符数字以区分正则表达式
+    # 此处转回普通数字
+    - xlit/①②③④⑤/12345/
+
+    # 万象词库适配 结束
+
+    # 省略韵母和声调
+    - abbrev/^([a-z]).+$/$1/
+    - abbrev/^([zcs]h).+$/$1/
+    # 省略韵母
+    - abbrev/^([a-z])(.+)([0-5])$/$1$3/
+    - abbrev/^([zcs]h)(.+)([0-5])$/$1$3/
+    # 省略声调
+    - abbrev/^([a-z]+)[0-5]$/$1/
+    # 符号标记声调
+    - 'xlit 1234 ;/:?'
+
+    # 末尾翻译器标记
+    - derive/^(.*)$/$1`c/
+
+punctuator:
+  import_preset: default
+
+translator:
+  initial_quality: 17
+  dictionary: thattem_pinyin
+  tags: [ thattem_pinyin, thattem_pinyin_ch ]
+  spelling_hints: 5
+  preedit_format:
+    # 将v显示为ü
+    - 'xlit v ü'
+    # 转化声调符号
+    - 'xlit ;/:? ˉˊˇˋ'
+    # 将声调标记在正确位置
+    - 'xform ([aeiou])(ng?|r)(ˉ|ˊ|ˇ|ˋ) $1$3$2'
+    - 'xform ([aeo])([iuo])(ˉ|ˊ|ˇ|ˋ) $1$3$2'
+    # 将声调标记于韵母上
+    - 'xform aˉ ā'
+    - 'xform aˊ á'
+    - 'xform aˇ ǎ'
+    - 'xform aˋ à'
+    - 'xform eˉ ē'
+    - 'xform eˊ é'
+    - 'xform eˇ ě'
+    - 'xform eˋ è'
+    - 'xform oˉ ō'
+    - 'xform oˊ ó'
+    - 'xform oˇ ǒ'
+    - 'xform oˋ ò'
+    - 'xform iˉ ī'
+    - 'xform iˊ í'
+    - 'xform iˇ ǐ'
+    - 'xform iˋ ì'
+    - 'xform uˉ ū'
+    - 'xform uˊ ú'
+    - 'xform uˇ ǔ'
+    - 'xform uˋ ù'
+    - 'xform üˉ ǖ'
+    - 'xform üˊ ǘ'
+    - 'xform üˇ ǚ'
+    - 'xform üˋ ǜ'
+    # 末尾翻译器标记
+    - 'xform `c \(汉\)'
+  comment_format:
+    - xform/^(.+)$/$1\(汉\)/
+  always_show_comments: true
+
+thattem_pinyin_en:
+  initial_quality: 11
+  dictionary: thattem_pinyin_en
+  tags: [ thattem_pinyin, thattem_pinyin_en ]
+  spelling_hints: 5
+  preedit_format:
+    # 末尾翻译器标记
+    - 'xform `e \(英\)'
+  comment_format:
+    - xform/^(.+)$/\(英\)/
+  always_show_comments: true
+
+thattem_pinyin_jp:
+  initial_quality: 13
+  dictionary: thattem_pinyin_jp
+  tags: [ thattem_pinyin, thattem_pinyin_jp ]
+  spelling_hints: 5
+  preedit_format:
+    # 末尾翻译器标记
+    - 'xform `j \(日\)'
+  comment_format:
+    - xform/^(.+)$/$1\(日\)/
+  always_show_comments: true

@@ -1,0 +1,62 @@
+# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: thattem_pinyin_en
+  name: 英文辅助
+  version: '0.0.0'
+  author:
+    - thattemperature <2719023332@qq.com>
+  description:
+    拼音输入法的英文辅助
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 有输入法, 无输入法 ]
+  - name: ascii_punct
+    reset: 0
+    states: [ 复杂标点, 简单标点 ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - table_translator
+  filters:
+    - uniquifier
+
+recognizer:
+  import_preset: default
+
+key_binder:
+  import_preset: default
+
+speller:
+  alphabet: 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA'
+  delimiter: " '"
+  algebra:
+    # 转化为小写
+    - derive/^(.*)$/\L$1/
+    # 末尾翻译器标记
+    - derive/^(.*)$/$1`e/
+
+punctuator:
+  import_preset: default
+
+translator:
+  dictionary: thattem_pinyin_en

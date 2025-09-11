@@ -1,0 +1,50 @@
+# Rime default settings
+# encoding: utf-8
+
+config_version: '0.0.0'
+
+schema_list:
+  - schema: thattem_pinyin
+
+switcher:
+  caption: 〔选择方案〕
+  hotkeys:
+    - F4
+  save_options:
+    - full_shape
+    - ascii_punct
+    - simplification
+    - extended_charset
+  fold_options: true
+  abbreviate_options: false
+  option_list_separator: '·'
+
+menu:
+  page_size: 9
+
+# 引擎的默认配置
+
+ascii_composer:
+  good_old_caps_lock: true
+  switch_key:
+    Control_R: inline_ascii
+    Shift_R: commit_code
+
+recognizer:
+  patterns:
+    thattem_pinyin_ch: "^[a-zA-Z]([a-zA-Z]|[;/:?]|-|_)*`c$"
+    thattem_pinyin_en: "^[a-zA-Z]([a-zA-Z]|[;/:?]|-|_)*`e$"
+    thattem_pinyin_jp: "^[a-zA-Z]([a-zA-Z]|[;/:?]|-|_)*`j$"
+    thattem_pinyin: "^[a-zA-Z]([a-zA-Z]|[;/:?]|-|_)*`?$"
+
+key_binder:
+  bindings:
+    __patch:
+      - key_bindings:/emacs_editing
+      - key_bindings:/special_key
+
+punctuator:
+  full_shape:
+    __include: punctuation:/full_shape
+  half_shape:
+    __include: punctuation:/half_shape
