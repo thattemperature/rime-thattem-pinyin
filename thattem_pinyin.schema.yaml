@@ -15,11 +15,11 @@ schema:
 
 switches:
   - name: ascii_mode
-    reset: 0
     states: [ 有输入法, 无输入法 ]
   - name: ascii_punct
-    reset: 0
     states: [ 复杂标点, 简单标点 ]
+  - name: full_shape
+    states: [ 半角标点, 全角标点 ]
 
 engine:
   processors:

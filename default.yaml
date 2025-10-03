@@ -10,11 +10,6 @@ switcher:
   caption: 〔选择方案〕
   hotkeys:
     - F4
-  save_options:
-    - full_shape
-    - ascii_punct
-    - simplification
-    - extended_charset
   fold_options: true
   abbreviate_options: false
   option_list_separator: '·'
