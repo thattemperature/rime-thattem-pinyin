@@ -47,7 +47,6 @@ engine:
     - table_translator@thattem_pinyin_en
     - script_translator@thattem_pinyin_jp
   filters:
-    - simplifier
     - uniquifier
 
 recognizer:
