@@ -7,5 +7,13 @@ sort: by_weight
 use_preset_vocabulary: false
 
 import_tables:
-  - dicts/japanese/japanese.kana
-  - dicts/japanese/japanese.mozc
+  - dicts/japanese/japanese-00
+  - dicts/japanese/japanese-01
+  - dicts/japanese/japanese-02
+  - dicts/japanese/japanese-03
+  - dicts/japanese/japanese-04
+  - dicts/japanese/japanese-05
+  - dicts/japanese/japanese-06
+  - dicts/japanese/japanese-07
+  - dicts/japanese/japanese-08
+  - dicts/japanese/japanese-09
