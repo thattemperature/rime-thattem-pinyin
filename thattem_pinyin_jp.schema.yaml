@@ -47,9 +47,9 @@ key_binder:
   import_preset: default
 
 speller:
-  alphabet: 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA-_'
+  alphabet: 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA-'
   initials: 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA'
-  finals: '-_'
+  finals: '-'
   delimiter: " '"
   algebra:
 
@@ -302,6 +302,21 @@ speller:
     - xform/ー/-/
 
     # 平假名转罗马字 结束
+
+    # 省略元音
+    - abbrev/([knmr])([aiueo])/$1/
+    - abbrev/(s)([aueo])/$1/
+    - abbrev/(sh)(i)/$1/
+    - abbrev/(s)(hi)/$1/
+    - abbrev/(t)([aeo])/$1/
+    - abbrev/(ch)(i)/$1/
+    - abbrev/(c)(hi)/$1/
+    - abbrev/(ts)(u)/$1/
+    - abbrev/(t)(su)/$1/
+    - abbrev/(h)([aieo])/$1/
+    - abbrev/(f)(u)/$1/
+    - abbrev/(y)([auo])/$1/
+    - abbrev/(w)([ao])/$1/
 
     # 末尾翻译器标记
     - derive/^(.*)$/$1`j/

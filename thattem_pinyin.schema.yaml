@@ -191,5 +191,5 @@ thattem_pinyin_jp:
     # 末尾翻译器标记
     - 'xform `j \(日\)'
   comment_format:
-    - xform/^(.+)$/$1\(日\)/
+    - xform/^(.+)$/§$1\(日\)/
   always_show_comments: true
