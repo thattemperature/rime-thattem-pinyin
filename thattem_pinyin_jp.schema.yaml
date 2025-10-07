@@ -317,6 +317,10 @@ speller:
     - abbrev/(f)(u)/$1/
     - abbrev/(y)([auo])/$1/
     - abbrev/(w)([ao])/$1/
+    - abbrev/([gbp])([aiueo])/$1/
+    - abbrev/([zd])([aeo])/$1/
+    - abbrev/(j)(i)/$1/
+    - abbrev/(z)(u)/$1/
 
     # 末尾翻译器标记
     - derive/^(.*)$/$1`j/
