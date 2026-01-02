@@ -7,5 +7,4 @@ sort: by_weight
 use_preset_vocabulary: false
 
 import_tables:
-  - dicts/english/cn&en
-  - dicts/english/en
+  - dicts/english/english-basic

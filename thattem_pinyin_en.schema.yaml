@@ -36,7 +36,7 @@ engine:
     - fallback_segmentor
   translators:
     - punct_translator
-    - table_translator
+    - script_translator
   filters:
     - uniquifier
 
@@ -47,11 +47,14 @@ key_binder:
   import_preset: default
 
 speller:
-  alphabet: 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA'
+  alphabet: "zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA-_'"
+  initials: 'zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA'
+  finals: '-_'
   delimiter: " '"
   algebra:
-    # 转化为小写
-    - derive/^(.*)$/\L$1/
+    # 简写
+    - derive/^(.{1}).+$/$1/
+    - derive/^(.{2}).+$/$1/
     # 末尾翻译器标记
     - derive/^(.*)$/$1`e/
 

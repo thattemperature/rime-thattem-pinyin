@@ -44,7 +44,7 @@ engine:
   translators:
     - punct_translator
     - script_translator
-    - table_translator@thattem_pinyin_en
+    - script_translator@thattem_pinyin_en
     - script_translator@thattem_pinyin_jp
   filters:
     - uniquifier
@@ -171,7 +171,7 @@ translator:
   always_show_comments: true
 
 thattem_pinyin_en:
-  initial_quality: 11
+  initial_quality: 14
   dictionary: thattem_pinyin_en
   tags: [ thattem_pinyin, thattem_pinyin_en ]
   spelling_hints: 5
