@@ -53,8 +53,7 @@ speller:
   delimiter: " '"
   algebra:
     # 简写
-    - derive/^(.{1}).+$/$1/
-    - derive/^(.{2}).+$/$1/
+    - derive/^(.).+$/$1/
     # 末尾翻译器标记
     - derive/^(.*)$/$1`e/
 
