@@ -52,8 +52,6 @@ speller:
   finals: '-_'
   delimiter: " '"
   algebra:
-    # 简写
-    - derive/^(.).+$/$1/
     # 末尾翻译器标记
     - derive/^(.*)$/$1`e/
 
