@@ -7,8 +7,7 @@ sort: by_weight
 use_preset_vocabulary: false
 
 import_tables:
-  - dicts/basic/chars
-  - dicts/basic/base
-  - dicts/basic/correlation
-  - dicts/basic/suggestion
-  - dicts/basic/compatible
+  - dicts/basic/zi
+  - dicts/basic/jichu
+  - dicts/basic/duoyin
+  - dicts/basic/lianxiang
