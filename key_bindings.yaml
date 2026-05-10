@@ -19,8 +19,3 @@ emacs_editing:
 special_key:
   __append:
     - { when: composing, accept: Control+x, send: grave }
-
-switch_ascii:
-  __append:
-    - { when: always, accept: Shift_R, unset_option: ascii_mode }
-    - { when: always, accept: Alt_R, set_option: ascii_mode }
