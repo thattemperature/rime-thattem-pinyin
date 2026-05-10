@@ -16,6 +16,7 @@ schema:
 switches:
   - name: ascii_mode
     states: [ 有输入法, 无输入法 ]
+    reset: 1
   - name: ascii_punct
     states: [ 复杂标点, 简单标点 ]
   - name: full_shape
