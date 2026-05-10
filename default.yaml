@@ -22,8 +22,7 @@ menu:
 ascii_composer:
   good_old_caps_lock: true
   switch_key:
-    Control_R: inline_ascii
-    Shift_R: commit_code
+    Control_R: commit_code
 
 recognizer:
   patterns:
@@ -37,6 +36,7 @@ key_binder:
     __patch:
       - key_bindings:/emacs_editing
       - key_bindings:/special_key
+      - key_bindings:/switch_ascii
 
 punctuator:
   full_shape:
