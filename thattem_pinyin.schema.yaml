@@ -10,7 +10,6 @@ schema:
   description:
     一个拼音输入法
   dependencies:
-    - thattem_pinyin_en
     - thattem_pinyin_jp
 
 switches:
@@ -37,7 +36,6 @@ engine:
     - matcher
     - affix_segmentor@thattem_pinyin
     - affix_segmentor@thattem_pinyin_ch
-    - affix_segmentor@thattem_pinyin_en
     - affix_segmentor@thattem_pinyin_jp
     - abc_segmentor
     - punct_segmentor
@@ -45,7 +43,6 @@ engine:
   translators:
     - punct_translator
     - script_translator
-    - script_translator@thattem_pinyin_en
     - script_translator@thattem_pinyin_jp
   filters:
     - uniquifier
@@ -169,18 +166,6 @@ translator:
     - 'xform `c \(汉\)'
   comment_format:
     - xform/^(.+)$/$1\(汉\)/
-  always_show_comments: true
-
-thattem_pinyin_en:
-  initial_quality: 14
-  dictionary: thattem_pinyin_en
-  tags: [ thattem_pinyin, thattem_pinyin_en ]
-  spelling_hints: 5
-  preedit_format:
-    # 末尾翻译器标记
-    - 'xform `e \(英\)'
-  comment_format:
-    - xform/^(.+)$/\(英\)/
   always_show_comments: true
 
 thattem_pinyin_jp:

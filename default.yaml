@@ -29,7 +29,6 @@ ascii_composer:
 recognizer:
   patterns:
     thattem_pinyin_ch: "^[a-zA-Z]([a-zA-Z]|[;/:?]|-|_|')*`c$"
-    thattem_pinyin_en: "^[a-zA-Z]([a-zA-Z]|[;/:?]|-|_|')*`e$"
     thattem_pinyin_jp: "^[a-zA-Z]([a-zA-Z]|[;/:?]|-|_|')*`j$"
     thattem_pinyin: "^[a-zA-Z]([a-zA-Z]|[;/:?]|-|_|')*`?$"
 
